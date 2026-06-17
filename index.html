@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TWS RPS 취향표" />
+<meta property="og:image" content="https://wantangi.github.io/리포명/preview.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://wantangi.github.io/리포명/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="TWS RPS 취향표" />
+<meta name="twitter:image" content="https://wantangi.github.io/리포명/preview.png" />
+<meta name="twitter:site" content="@wantangi" />
+
+<title>TWS RPS 취향표</title>
+
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+<style>
+  :root{
+    --ink:#111111;
+    --muted:#9a9a9a;
+    --bg:#ffffff;
+    --head:#111111;
+    --head-line:#444444;
+    --line:#cfcfcf;
+    --cell-w:94px;
+    --cell-h:60px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+  }
+
+  body{
+    font-family:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background:var(--bg);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:42px 16px 56px;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stage{
+    overflow:hidden;
+  }
+
+  .card{
+    background:#ffffff;
+    padding:22px 26px 24px;
+    width:max-content;
+    transform-origin:top left;
+  }
+
+  .sheet{
+    width:max-content;
+    margin:0 auto;
+  }
+
+  .header{
+    width:100%;
+    margin:0 0 18px;
+    text-align:center;
+  }
+
+  .title{
+    font-size:24px;
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-.04em;
+    color:#111;
+  }
+
+  .credit{
+    margin-top:5px;
+    font-size:9.8px;
+    color:var(--muted);
+    font-weight:600;
+    letter-spacing:-.03em;
+    white-space:nowrap;
+  }
+
+  table{
+    border-collapse:collapse;
+    border-spacing:0;
+  }
+
+  th,td{
+    width:var(--cell-w);
+    height:var(--cell-h);
+    text-align:center;
+    vertical-align:middle;
+    font-size:16px;
+    font-weight:650;
+    color:var(--ink);
+    padding:0;
+  }
+
+  thead th,
+  tbody th{
+    background:var(--head);
+    color:#ffffff;
+    font-weight:750;
+    border-right:1.5px solid var(--head-line);
+    border-bottom:1.5px solid var(--head-line);
+  }
+
+  td{
+    background:#ffffff;
+    border-right:1.5px solid var(--line);
+    border-bottom:1.5px solid var(--line);
+  }
+
+  tbody td:first-of-type{
+    border-left:1.5px solid var(--line);
+  }
+
+  td.cell{
+    cursor:pointer;
+    transition:background .12s ease;
+  }
+
+  td.cell:hover{
+    background:#f2f2f2;
+  }
+
+  td.self{
+    cursor:default;
+  }
+
+  .heart{
+    width:16px;
+    height:16px;
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  .chip{
+    display:inline-block;
+    min-width:42px;
+    padding:7px 11px;
+    line-height:1;
+    border-radius:0;
+  }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px 18px;
+    width:100%;
+    margin:20px 0 2px;
+    font-size:13px;
+  }
+
+  .legend .item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#222;
+    font-weight:650;
+    line-height:1;
+  }
+
+  .legend .dot{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    display:inline-block;
+    flex:none;
+  }
+
+  .controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:26px;
+  }
+
+  button.btn{
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+    border-radius:8px;
+    padding:11px 22px;
+    cursor:pointer;
+  }
+
+  .btn-primary{
+    background:#111111;
+    color:#ffffff;
+    border:1.5px solid #111111;
+  }
+
+  .btn-primary:hover{
+    background:#000000;
+  }
+
+  .btn-ghost{
+    background:#ffffff;
+    color:#111111;
+    border:1.5px solid #111111;
+  }
+
+  .btn-ghost:hover{
+    background:#f1f1f1;
+  }
+
+  .pop{
+    position:fixed;
+    z-index:50;
+    background:#fff;
+    border:1px solid #e2e2e6;
+    border-radius:12px;
+    padding:10px;
+    display:none;
+    box-shadow:0 8px 22px rgba(0,0,0,.08);
+  }
+
+  .pop.open{
+    display:block;
+  }
+
+  .pop .opts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .pop .opt{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    padding:6px 8px;
+    border-radius:8px;
+    font-family:inherit;
+  }
+
+  .pop .opt:hover{
+    background:#f3f3f5;
+  }
+
+  .pop .sw{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+  }
+
+  .pop .opt span{
+    font-size:12px;
+    color:#333;
+    font-weight:600;
+  }
+
+  @media (max-width:560px){
+    body{
+      padding:20px 10px 28px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div class="stage" id="stage">
+    <div class="card" id="capture">
+      <div class="sheet">
+        <div class="header">
+          <div class="title">TWS RPS 취향표</div>
+          <div class="credit">@shinanddo</div>
+        </div>
+
+        <table id="chart"></table>
+
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" id="saveBtn">이미지 저장</button>
+    <button class="btn btn-ghost" id="resetBtn">초기화</button>
+  </div>
+
+  <div class="pop" id="pop">
+    <div class="opts" id="popOpts"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script>
+    const members = ['신유','도훈','영재','한진','지훈','경민'];
+
+    const cells = [
+      ['',     '닏도','닏재','닏한','닏훈','닏경'],
+      ['도닏','',     '돟재','돟한','돟햎','돟탱'],
+      ['재닏','재돟','',     '재쩐','영햎','영밐'],
+      ['한닏','한돟','핝재','',     '한햎','핝갱'],
+      ['햎닏','햎도','햎재','훈쩐','',     '훈갱'],
+      ['경닏','경돟','경째','경쩐','경햎','']
+    ];
+
+    /*
+      원래 색상 유지 + 투명도만 낮춘 값
+      op 값이 실제 셀에 적용되는 투명도
+    */
+    const cats = [
+      { key:'otp',      label:'OTP',      rgb:'236,50,50',   op:.56, dot:'rgba(236,50,50,.56)' },
+      { key:'good',     label:'좋음',     rgb:'255,159,79',  op:.52, dot:'rgba(255,159,79,.52)' },
+      { key:'like',     label:'호감',     rgb:'255,214,71',  op:.52, dot:'rgba(255,214,71,.52)' },
+      { key:'interest', label:'가능',     rgb:'109,224,196', op:.50, dot:'rgba(109,224,196,.50)' },
+      { key:'none',     label:'관심없음', rgb:null,          op:0,   dot:'#ffffff' },
+      { key:'mine',     label:'지뢰',     rgb:'52,58,80',    op:.80, dot:'rgba(52,58,80,.80)' }
+    ];
+
+    const catMap = Object.fromEntries(cats.map(c => [c.key, c]));
+    const fillOf = c => c.rgb ? 'rgba(' + c.rgb + ',' + c.op + ')' : '';
+
+    const heartPath = 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';
+    const grayHeart = '<svg class="heart" viewBox="0 0 24 24"><path d="' + heartPath + '" fill="#eeeeee"/></svg>';
+
+    const legend = document.getElementById('legend');
+    legend.innerHTML = cats.map(function(c){
+      const border = c.key === 'none' ? '1px solid #cccccc' : '1px solid rgba(0,0,0,.07)';
+      return '<div class="item"><span class="dot" style="background:' + c.dot + ';border:' + border + '"></span><span>' + c.label + '</span></div>';
+    }).join('');
+
+    const state = {};
+    const tbl = document.getElementById('chart');
+
+    function buildTable(){
+      let html = '<thead><tr><th class="corner"></th>';
+
+      members.forEach(function(m){
+        html += '<th>' + m + '</th>';
+      });
+
+      html += '</tr></thead><tbody>';
+
+      for(let r = 0; r < members.length; r++){
+        html += '<tr><th>' + members[r] + '</th>';
+
+        for(let c = 0; c < members.length; c++){
+          if(r === c){
+            html += '<td class="self">' + grayHeart + '</td>';
+          }else{
+            html += '<td class="cell" data-r="' + r + '" data-c="' + c + '"><span class="chip">' + cells[r][c] + '</span></td>';
+          }
+        }
+
+        html += '</tr>';
+      }
+
+      html += '</tbody>';
+      tbl.innerHTML = html;
+    }
+
+    buildTable();
+
+    const pop = document.getElementById('pop');
+    const popOpts = document.getElementById('popOpts');
+    let activeCell = null;
+
+    popOpts.innerHTML = cats.map(function(c){
+      const swColor = c.rgb ? 'rgba(' + c.rgb + ',' + Math.min(c.op + 0.18, 0.9) + ')' : '#ffffff';
+      const border = c.key === 'none' ? 'border:1px dashed #cccccc;' : 'border:1px solid rgba(0,0,0,.08);';
+
+      return '<button class="opt" data-key="' + c.key + '"><span class="sw" style="background:' + swColor + ';' + border + '"></span><span>' + c.label + '</span></button>';
+    }).join('');
+
+    function applyColor(cell, key){
+      const cat = catMap[key];
+      const id = cell.dataset.r + '-' + cell.dataset.c;
+
+      if(!cat || !cat.rgb){
+        cell.style.background = '';
+        delete state[id];
+      }else{
+        cell.style.background = fillOf(cat);
+        state[id] = key;
+      }
+    }
+
+    function openPop(cell){
+      activeCell = cell;
+      pop.classList.add('open');
+
+      const r = cell.getBoundingClientRect();
+      const pw = pop.offsetWidth;
+      const ph = pop.offsetHeight;
+      const M = 8;
+
+      let left = r.left + r.width / 2 - pw / 2;
+      let top = r.bottom + 8;
+
+      left = Math.max(M, Math.min(left, window.innerWidth - pw - M));
+
+      if(top + ph > window.innerHeight - M){
+        top = r.top - ph - 8;
+      }
+
+      pop.style.left = left + 'px';
+      pop.style.top = top + 'px';
+    }
+
+    function closePop(){
+      pop.classList.remove('open');
+      activeCell = null;
+    }
+
+    tbl.addEventListener('click', function(e){
+      const cell = e.target.closest('td.cell');
+      if(!cell) return;
+
+      e.stopPropagation();
+
+      if(activeCell === cell){
+        closePop();
+        return;
+      }
+
+      openPop(cell);
+    });
+
+    popOpts.addEventListener('click', function(e){
+      const opt = e.target.closest('.opt');
+      if(!opt || !activeCell) return;
+
+      applyColor(activeCell, opt.dataset.key);
+      closePop();
+    });
+
+    document.addEventListener('click', function(e){
+      if(pop.classList.contains('open') && !pop.contains(e.target)){
+        closePop();
+      }
+    });
+
+    window.addEventListener('resize', closePop);
+    window.addEventListener('scroll', closePop, true);
+
+    document.getElementById('resetBtn').addEventListener('click', function(){
+      document.querySelectorAll('td.cell').forEach(function(cell){
+        cell.style.background = '';
+      });
+
+      for(const k in state){
+        delete state[k];
+      }
+
+      closePop();
+    });
+
+    const stageEl = document.getElementById('stage');
+
+    function relayout(){
+      const card = document.getElementById('capture');
+
+      card.style.transform = 'none';
+
+      const w = card.offsetWidth;
+      const h = card.offsetHeight;
+
+      if(!w || !h) return;
+
+      const padX = parseFloat(getComputedStyle(document.body).paddingLeft) || 0;
+      const avail = document.documentElement.clientWidth - padX * 2;
+      const s = avail < w ? avail / w : 1;
+
+      card.style.transform = s < 1 ? 'scale(' + s + ')' : 'none';
+      stageEl.style.width = (w * s) + 'px';
+      stageEl.style.height = (h * s) + 'px';
+    }
+
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(relayout);
+    }else{
+      relayout();
+    }
+
+    relayout();
+    window.addEventListener('resize', relayout);
+
+    function triggerDownload(url, revoke){
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'RPS_취향표.png';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      if(revoke){
+        setTimeout(function(){
+          URL.revokeObjectURL(url);
+        }, 1500);
+      }
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', function(){
+      closePop();
+
+      const btn = this;
+      const prev = btn.textContent;
+
+      if(typeof html2canvas === 'undefined'){
+        alert('이미지 저장 라이브러리를 불러오지 못했어요.');
+        return;
+      }
+
+      btn.textContent = '저장 중…';
+      btn.disabled = true;
+
+      const node = document.getElementById('capture');
+      const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      const scale = Math.min(4, Math.max(2, (window.devicePixelRatio || 1) * 2));
+
+      function finish(){
+        btn.textContent = prev;
+        btn.disabled = false;
+        relayout();
+      }
+
+      fontsReady.then(function(){
+        node.style.transform = 'none';
+
+        const w = node.offsetWidth;
+        const h = node.offsetHeight;
+
+        return html2canvas(node, {
+          scale: scale,
+          backgroundColor:'#ffffff',
+          useCORS:true,
+          logging:false,
+          width: w,
+          height: h,
+          windowWidth: w,
+          windowHeight: h,
+          scrollX: 0,
+          scrollY: 0
+        });
+      }).then(function(canvas){
+        if(canvas.toBlob){
+          canvas.toBlob(function(blob){
+            if(blob){
+              triggerDownload(URL.createObjectURL(blob), true);
+            }else{
+              triggerDownload(canvas.toDataURL('image/png'), false);
+            }
+
+            finish();
+          }, 'image/png');
+        }else{
+          triggerDownload(canvas.toDataURL('image/png'), false);
+          finish();
+        }
+      }).catch(function(err){
+        console.error(err);
+        alert('이미지 저장에 실패했어요: ' + (err && err.message ? err.message : err));
+        finish();
+      });
+    });
+  </script>
+</body>
+</html>
