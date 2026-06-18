@@ -3,30 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="TWS RPS 취향표" />
-<meta property="og:image" content="https://wantangi.github.io/리포명/preview.png" />
+<meta property="og:image" content="https://shinanddo.github.io/newchart/preview.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://wantangi.github.io/리포명/" />
+<meta property="og:url" content="https://shinanddo.github.io/newchart/" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="TWS RPS 취향표" />
-<meta name="twitter:image" content="https://wantangi.github.io/리포명/preview.png" />
-<meta name="twitter:site" content="@wantangi" />
+<meta name="twitter:image" content="https://shinanddo.github.io/newchart/preview.png" />
+<meta name="twitter:site" content="@shinanddo" />
 
-<title>TWS RPS 취향표</title>
+<title>TWS RPS 취향표 | @shinanddo</title>
 
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
 
 <style>
   :root{
-    --ink:#111111;
-    --muted:#9a9a9a;
-    --bg:#ffffff;
-    --head:#111111;
-    --head-line:#444444;
-    --line:#cfcfcf;
+    --ink:#37352F;
+    --muted:#B8B8B4;
+    --bg:#FFFFFF;
+    --head:#FAFAFA;
+    --head-line:#E5E7EB;
+    --line:#E5E7EB;
+
     --cell-w:94px;
     --cell-h:60px;
   }
@@ -36,6 +39,7 @@
   html,body{
     margin:0;
     padding:0;
+    background:var(--bg);
   }
 
   body{
@@ -48,6 +52,7 @@
     padding:42px 16px 56px;
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
+    text-rendering:geometricPrecision;
   }
 
   .stage{
@@ -56,7 +61,10 @@
 
   .card{
     background:#ffffff;
-    padding:22px 26px 24px;
+    padding:38px;
+    border:none;
+    border-radius:0;
+    box-shadow:none;
     width:max-content;
     transform-origin:top left;
   }
@@ -68,30 +76,43 @@
 
   .header{
     width:100%;
-    margin:0 0 18px;
+    margin:0 0 20px;
     text-align:center;
   }
 
   .title{
-    font-size:24px;
+    font-size:23px;
     line-height:1.1;
     font-weight:800;
     letter-spacing:-.04em;
-    color:#111;
+    color:#37352F;
   }
 
   .credit{
-    margin-top:5px;
-    font-size:9.8px;
+    margin-top:7px;
+    font-size:10.5px;
     color:var(--muted);
     font-weight:600;
     letter-spacing:-.03em;
     white-space:nowrap;
   }
 
+  .table-wrap{
+    display:block;
+    width:fit-content;
+    margin:0 auto;
+    padding:1px;
+    background:#DADDE1;
+    border:none;
+    box-shadow:none;
+    line-height:0;
+  }
+
   table{
     border-collapse:collapse;
     border-spacing:0;
+    margin:0;
+    background:#ffffff;
   }
 
   th,td{
@@ -99,8 +120,8 @@
     height:var(--cell-h);
     text-align:center;
     vertical-align:middle;
-    font-size:16px;
-    font-weight:650;
+    font-size:15.5px;
+    font-weight:600;
     color:var(--ink);
     padding:0;
   }
@@ -108,20 +129,26 @@
   thead th,
   tbody th{
     background:var(--head);
-    color:#ffffff;
-    font-weight:750;
-    border-right:1.5px solid var(--head-line);
-    border-bottom:1.5px solid var(--head-line);
+    color:#37352F;
+    font-weight:700;
+    border-right:1px solid var(--head-line);
+    border-bottom:1px solid var(--head-line);
   }
 
   td{
     background:#ffffff;
-    border-right:1.5px solid var(--line);
-    border-bottom:1.5px solid var(--line);
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
   }
 
-  tbody td:first-of-type{
-    border-left:1.5px solid var(--line);
+  tr th:last-child,
+  tr td:last-child{
+    border-right:none;
+  }
+
+  tbody tr:last-child th,
+  tbody tr:last-child td{
+    border-bottom:none;
   }
 
   td.cell{
@@ -130,7 +157,7 @@
   }
 
   td.cell:hover{
-    background:#f2f2f2;
+    background:#F7F7F5;
   }
 
   td.self{
@@ -152,22 +179,22 @@
     justify-content:center;
     gap:12px 18px;
     width:100%;
-    margin:20px 0 2px;
-    font-size:13px;
+    margin:20px 0 0;
+    font-size:12.7px;
   }
 
   .legend .item{
     display:flex;
     align-items:center;
     gap:6px;
-    color:#222;
-    font-weight:650;
+    color:#37352F;
+    font-weight:620;
     line-height:1;
   }
 
   .legend .dot{
-    width:18px;
-    height:18px;
+    width:15px;
+    height:15px;
     border-radius:50%;
     display:inline-block;
     flex:none;
@@ -191,31 +218,31 @@
   }
 
   .btn-primary{
-    background:#111111;
+    background:#37352F;
     color:#ffffff;
-    border:1.5px solid #111111;
+    border:1px solid #37352F;
   }
 
   .btn-primary:hover{
-    background:#000000;
+    background:#24231F;
   }
 
   .btn-ghost{
     background:#ffffff;
-    color:#111111;
-    border:1.5px solid #111111;
+    color:#37352F;
+    border:1px solid #D8D8D5;
   }
 
   .btn-ghost:hover{
-    background:#f1f1f1;
+    background:#F7F7F5;
   }
 
   .pop{
     position:fixed;
     z-index:50;
     background:#fff;
-    border:1px solid #e2e2e6;
-    border-radius:12px;
+    border:1px solid #E5E7EB;
+    border-radius:10px;
     padding:10px;
     display:none;
     box-shadow:0 8px 22px rgba(0,0,0,.08);
@@ -245,7 +272,7 @@
   }
 
   .pop .opt:hover{
-    background:#f3f3f5;
+    background:#F7F7F5;
   }
 
   .pop .sw{
@@ -256,16 +283,33 @@
 
   .pop .opt span{
     font-size:12px;
-    color:#333;
-    font-weight:600;
+    color:#37352F;
+    font-weight:620;
+  }
+
+
+  button,
+  .cell,
+  .opt{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  button:disabled{
+    cursor:default;
+    opacity:.72;
   }
 
   @media (max-width:560px){
     body{
-      padding:20px 10px 28px;
+      padding:22px 10px 32px;
+    }
+
+    .card{
+      padding:32px;
     }
   }
 </style>
+
 </head>
 
 <body>
@@ -277,7 +321,9 @@
           <div class="credit">@shinanddo</div>
         </div>
 
-        <table id="chart"></table>
+        <div class="table-wrap">
+          <table id="chart"></table>
+        </div>
 
         <div class="legend" id="legend"></div>
       </div>
@@ -285,8 +331,8 @@
   </div>
 
   <div class="controls">
-    <button class="btn btn-primary" id="saveBtn">이미지 저장</button>
-    <button class="btn btn-ghost" id="resetBtn">초기화</button>
+    <button type="button" class="btn btn-primary" id="saveBtn">이미지 저장</button>
+    <button type="button" class="btn btn-ghost" id="resetBtn">초기화</button>
   </div>
 
   <div class="pop" id="pop">
@@ -307,16 +353,13 @@
       ['경닏','경돟','경째','경쩐','경햎','']
     ];
 
-    /*
-      원래 색상 유지 + 투명도만 낮춘 값
-    */
     const cats = [
-      { key:'otp',      label:'OTP',      rgb:'236,50,50',   op:.56, dot:'rgba(236,50,50,.56)' },
-      { key:'good',     label:'좋음',     rgb:'255,159,79',  op:.52, dot:'rgba(255,159,79,.52)' },
-      { key:'like',     label:'호감',     rgb:'255,214,71',  op:.52, dot:'rgba(255,214,71,.52)' },
-      { key:'interest', label:'가능',     rgb:'109,224,196', op:.50, dot:'rgba(109,224,196,.50)' },
+      { key:'otp',      label:'OTP',      rgb:'248,124,124', op:.60, dot:'rgba(248,124,124,.60)' },
+      { key:'good',     label:'좋음',     rgb:'251,171,106', op:.58, dot:'rgba(251,171,106,.58)' },
+      { key:'like',     label:'호감',     rgb:'253,216,94',  op:.58, dot:'rgba(253,216,94,.58)' },
+      { key:'interest', label:'가능',     rgb:'115,226,197', op:.58, dot:'rgba(115,226,197,.58)' },
       { key:'none',     label:'관심없음', rgb:null,          op:0,   dot:'#ffffff' },
-      { key:'mine',     label:'지뢰',     rgb:'52,58,80',    op:.80, dot:'rgba(52,58,80,.80)' }
+      { key:'mine',     label:'지뢰',     rgb:'90,90,92',    op:.66, dot:'rgba(90,90,92,.66)' }
     ];
 
     const catMap = Object.fromEntries(cats.map(c => [c.key, c]));
@@ -486,19 +529,91 @@
     relayout();
     window.addEventListener('resize', relayout);
 
-    function triggerDownload(url, revoke){
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'RPS_취향표.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    
+    function isIOSWebKit(){
+      return /iP(ad|hone|od)/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints >= 5);
+    }
 
-      if(revoke){
-        setTimeout(function(){
-          URL.revokeObjectURL(url);
-        }, 1500);
+    function makeCenteredExportCanvas(contentCanvas, cssMargin, scale){
+      const margin = Math.round(cssMargin * scale);
+      const out = document.createElement('canvas');
+
+      out.width = contentCanvas.width + margin * 2;
+      out.height = contentCanvas.height + margin * 2;
+
+      const ctx = out.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, out.width, out.height);
+      ctx.drawImage(contentCanvas, margin, margin);
+
+      return out;
+    }
+
+    function canvasToBlob(canvas){
+      return new Promise(function(resolve){
+        if(canvas.toBlob){
+          canvas.toBlob(function(blob){
+            resolve(blob);
+          }, 'image/png');
+        }else{
+          resolve(null);
+        }
+      });
+    }
+
+    function writeImageWindow(targetWindow, canvas){
+      const dataUrl = canvas.toDataURL('image/png');
+
+      if(targetWindow && !targetWindow.closed){
+        targetWindow.document.open();
+        targetWindow.document.write('<!doctype html><html lang="ko"><head><meta charset="UTF-8"><title>TWS RPS 취향표 | @shinanddo</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;background:#fff;}body{display:flex;justify-content:center;align-items:flex-start;padding:0;}img{display:block;max-width:100%;height:auto;}</style></head><body><img src="' + dataUrl + '" alt="RPS 취향표"></body></html>');
+        targetWindow.document.close();
+        return;
       }
+
+      location.href = dataUrl;
+    }
+
+    async function triggerDownloadFromCanvas(canvas, preparedWindow){
+      const filename = 'RPS_취향표.png';
+
+      /*
+        iPhone/iPadOS Safari/Chrome:
+        새 창은 클릭 이벤트 안에서 미리 열어두고, 렌더링 완료 후 이미지를 주입합니다.
+        이렇게 해야 비동기 처리 후 window.open이 팝업 차단되는 문제를 줄일 수 있습니다.
+
+        Android/PC/Mac:
+        Blob PNG를 download 속성으로 저장합니다.
+      */
+      if(isIOSWebKit()){
+        writeImageWindow(preparedWindow, canvas);
+        return;
+      }
+
+      const blob = await canvasToBlob(canvas);
+
+      if(blob){
+        try{
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+
+          setTimeout(function(){
+            URL.revokeObjectURL(url);
+          }, 1500);
+
+          return;
+        }catch(e){
+          console.warn(e);
+        }
+      }
+
+      writeImageWindow(null, canvas);
     }
 
     document.getElementById('saveBtn').addEventListener('click', function(){
@@ -506,18 +621,30 @@
 
       const btn = this;
       const prev = btn.textContent;
+      let preparedWindow = null;
 
       if(typeof html2canvas === 'undefined'){
-        alert('이미지 저장 라이브러리를 불러오지 못했어요.');
+        alert('이미지 저장 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인한 뒤 다시 시도해 주세요.');
         return;
+      }
+
+      if(isIOSWebKit()){
+        preparedWindow = window.open('', '_blank');
+
+        if(preparedWindow){
+          preparedWindow.document.write('<!doctype html><html lang="ko"><head><meta charset="UTF-8"><title>이미지 생성 중…</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#37352F;background:#fff;font-size:15px;}</style></head><body>이미지 생성 중…</body></html>');
+          preparedWindow.document.close();
+        }
       }
 
       btn.textContent = '저장 중…';
       btn.disabled = true;
 
-      const node = document.getElementById('capture');
+      const card = document.getElementById('capture');
+      const node = document.querySelector('#capture .sheet');
       const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
       const scale = Math.min(4, Math.max(2, (window.devicePixelRatio || 1) * 2));
+      const exportMargin = window.matchMedia('(max-width:560px)').matches ? 32 : 38;
 
       function finish(){
         btn.textContent = prev;
@@ -526,44 +653,41 @@
       }
 
       fontsReady.then(function(){
-        node.style.transform = 'none';
+        card.style.transform = 'none';
 
-        const w = node.offsetWidth;
-        const h = node.offsetHeight;
+        const w = Math.ceil(node.offsetWidth);
+        const h = Math.ceil(node.offsetHeight);
 
         return html2canvas(node, {
           scale: scale,
           backgroundColor:'#ffffff',
           useCORS:true,
+          allowTaint:false,
           logging:false,
           width: w,
           height: h,
           windowWidth: w,
           windowHeight: h,
           scrollX: 0,
-          scrollY: 0
+          scrollY: 0,
+          removeContainer:true
         });
-      }).then(function(canvas){
-        if(canvas.toBlob){
-          canvas.toBlob(function(blob){
-            if(blob){
-              triggerDownload(URL.createObjectURL(blob), true);
-            }else{
-              triggerDownload(canvas.toDataURL('image/png'), false);
-            }
-
-            finish();
-          }, 'image/png');
-        }else{
-          triggerDownload(canvas.toDataURL('image/png'), false);
-          finish();
-        }
+      }).then(function(contentCanvas){
+        const centeredCanvas = makeCenteredExportCanvas(contentCanvas, exportMargin, scale);
+        return triggerDownloadFromCanvas(centeredCanvas, preparedWindow).then(finish);
       }).catch(function(err){
         console.error(err);
+
+        if(preparedWindow && !preparedWindow.closed){
+          preparedWindow.close();
+        }
+
         alert('이미지 저장에 실패했어요: ' + (err && err.message ? err.message : err));
         finish();
       });
     });
+
+
   </script>
 </body>
 </html>
