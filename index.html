@@ -1,320 +1,338 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="format-detection" content="telephone=no" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
 
-<meta property="og:type" content="website" />
-<meta property="og:title" content="TWS RPS 취향표" />
-<meta property="og:image" content="https://shinanddo.github.io/rpschart/preview.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://shinanddo.github.io/rpschart/" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="TWS RPS 취향표" />
-<meta name="twitter:image" content="https://shinanddo.github.io/rpschart/preview.png" />
-<meta name="twitter:site" content="@shinanddo" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TWS RPS 취향표" />
+  <meta property="og:image" content="https://shinanddo.github.io/rpschart/preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://shinanddo.github.io/rpschart/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TWS RPS 취향표" />
+  <meta name="twitter:image" content="https://shinanddo.github.io/rpschart/preview.png" />
+  <meta name="twitter:site" content="@shinanddo" />
 
-<title>TWS RPS 취향표 | @shinanddo</title>
+  <title>TWS RPS 취향표 | @shinanddo</title>
 
-<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 
-
-<style>
-  :root{
-    --ink:#37352F;
-    --muted:#B8B8B4;
-    --bg:#FFFFFF;
-    --head:#FAFAFA;
-    --head-line:#888888;
-    --line:#888888;
-
-    --cell-w:94px;
-    --cell-h:60px;
-  }
-
-  *{ box-sizing:border-box; }
-
-  html,body{
-    margin:0;
-    padding:0;
-    background:var(--bg);
-  }
-
-  body{
-    font-family:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    background:var(--bg);
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:42px 16px 56px;
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    text-rendering:geometricPrecision;
-  }
-
-  .stage{
-    overflow:hidden;
-  }
-
-  .card{
-    background:#ffffff;
-    padding:38px;
-    border:none;
-    border-radius:0;
-    box-shadow:none;
-    width:max-content;
-    transform-origin:top left;
-  }
-
-  .sheet{
-    width:max-content;
-    margin:0 auto;
-  }
-
-  .header{
-    position:relative;
-    width:100%;
-    margin:14px 0 20px;
-    text-align:center;
-  }
-
-  .title{
-    font-size:23px;
-    line-height:1.1;
-    font-weight:800;
-    letter-spacing:-.04em;
-    color:#37352F;
-  }
-
-  .credit{
-    position:absolute;
-    right:1px;
-    top:50%;
-    transform:translateY(calc(-50% + 2px));
-    margin:0;
-    font-size:10.5px;
-    color:#DCDCD8;
-    font-weight:500;
-    letter-spacing:-.03em;
-    white-space:nowrap;
-  }
-
-  .table-wrap{
-    display:block;
-    width:fit-content;
-    margin:0 auto;
-    padding:1px;
-    background:#888888;
-    border:none;
-    box-shadow:none;
-    line-height:0;
-  }
-
-  table{
-    border-collapse:collapse;
-    border-spacing:0;
-    margin:0;
-    background:#ffffff;
-  }
-
-  th,td{
-    width:var(--cell-w);
-    height:var(--cell-h);
-    text-align:center;
-    vertical-align:middle;
-    font-size:15.5px;
-    font-weight:600;
-    color:var(--ink);
-    padding:0;
-  }
-
-  thead th,
-  tbody th{
-    background:var(--head);
-    color:#37352F;
-    font-weight:700;
-    border-right:1px solid var(--head-line);
-    border-bottom:1px solid var(--head-line);
-  }
-
-  td{
-    background:#ffffff;
-    border-right:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-  }
-
-  tr th:last-child,
-  tr td:last-child{
-    border-right:none;
-  }
-
-  tbody tr:last-child th,
-  tbody tr:last-child td{
-    border-bottom:none;
-  }
-
-  td.cell{
-    cursor:pointer;
-    transition:background .12s ease;
-  }
-
-  td.cell:hover{
-    background:#F7F7F5;
-  }
-
-  td.self{
-    cursor:default;
-    background:#ffffff;
-  }
-
-  .chip{
-    display:inline-block;
-    min-width:42px;
-    padding:7px 11px;
-    line-height:1;
-    border-radius:0;
-  }
-
-  .legend{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px 18px;
-    width:100%;
-    margin:20px 0 0;
-    font-size:12.7px;
-  }
-
-  .legend .item{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    color:#37352F;
-    font-weight:620;
-    line-height:1;
-  }
-
-  .legend .dot{
-    width:15px;
-    height:15px;
-    border-radius:50%;
-    display:inline-block;
-    flex:none;
-  }
-
-  .controls{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:26px;
-  }
-
-  button.btn{
-    font-family:inherit;
-    font-size:14px;
-    font-weight:700;
-    border-radius:8px;
-    padding:11px 22px;
-    cursor:pointer;
-  }
-
-  .btn-primary{
-    background:#37352F;
-    color:#ffffff;
-    border:1px solid #37352F;
-  }
-
-  .btn-primary:hover{
-    background:#24231F;
-  }
-
-  .btn-ghost{
-    background:#ffffff;
-    color:#37352F;
-    border:1px solid #D8D8D5;
-  }
-
-  .btn-ghost:hover{
-    background:#F7F7F5;
-  }
-
-  .pop{
-    position:fixed;
-    z-index:50;
-    background:#fff;
-    border:1px solid #C0C0C0;
-    border-radius:10px;
-    padding:10px;
-    display:none;
-    box-shadow:0 8px 22px rgba(0,0,0,.08);
-  }
-
-  .pop.open{
-    display:block;
-  }
-
-  .pop .opts{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-  }
-
-  .pop .opt{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:5px;
-    border:none;
-    background:transparent;
-    cursor:pointer;
-    padding:6px 8px;
-    border-radius:8px;
-    font-family:inherit;
-  }
-
-  .pop .opt:hover{
-    background:#F7F7F5;
-  }
-
-  .pop .sw{
-    width:24px;
-    height:24px;
-    border-radius:50%;
-  }
-
-  .pop .opt span{
-    font-size:12px;
-    color:#37352F;
-    font-weight:620;
-  }
-
-
-  button,
-  .cell,
-  .opt{
-    -webkit-tap-highlight-color:transparent;
-  }
-
-  button:disabled{
-    cursor:default;
-    opacity:.72;
-  }
-
-  @media (max-width:560px){
-    body{
-      padding:22px 10px 32px;
+  <style>
+    :root{
+      --ink:#37352F;
+      --bg:#FFFFFF;
+      --head:#FAFAFA;
+      --line:#888888;
+      --cell-w:94px;
+      --cell-h:60px;
     }
+
+    *{box-sizing:border-box;}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:42px 16px 56px;
+      color:var(--ink);
+      background:var(--bg);
+      font-family:'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+
+    .stage{overflow:hidden;}
 
     .card{
-      padding:32px;
+      width:max-content;
+      padding:38px;
+      background:#fff;
+      transform-origin:top left;
     }
-  }
-</style>
 
+    .sheet{
+      width:max-content;
+      margin:0 auto;
+    }
+
+    .header{
+      width:100%;
+      margin:14px 0 20px;
+      text-align:center;
+    }
+
+    .title{
+      color:var(--ink);
+      font-size:23px;
+      font-weight:800;
+      line-height:1.1;
+      letter-spacing:-.04em;
+    }
+
+    .table-wrap{
+      display:block;
+      width:fit-content;
+      margin:0 auto;
+      padding:1px;
+      background:var(--line);
+      line-height:0;
+    }
+
+    table{
+      margin:0;
+      border-collapse:collapse;
+      border-spacing:0;
+      background:#fff;
+    }
+
+    th,td{
+      width:var(--cell-w);
+      height:var(--cell-h);
+      padding:0;
+      color:var(--ink);
+      font-size:15.5px;
+      font-weight:600;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    thead th,
+    tbody th{
+      color:var(--ink);
+      background:var(--head);
+      font-weight:700;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    td{
+      background:#fff;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    tr th:last-child,
+    tr td:last-child{border-right:none;}
+
+    tbody tr:last-child th,
+    tbody tr:last-child td{border-bottom:none;}
+
+    td.cell{
+      cursor:pointer;
+      transition:background .12s ease;
+    }
+
+    td.cell:hover{background:#F7F7F5;}
+    td.self{cursor:default;background:#fff;}
+
+    .chip{
+      display:inline-block;
+      min-width:42px;
+      padding:7px 11px;
+      line-height:1;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px 18px;
+      width:100%;
+      margin:20px 0 0;
+      font-size:12.7px;
+    }
+
+    .legend .item{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color:var(--ink);
+      font-weight:620;
+      line-height:1;
+    }
+
+    .legend .dot{
+      width:15px;
+      height:15px;
+      flex:none;
+      border-radius:50%;
+    }
+
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:26px;
+    }
+
+    button{
+      font-family:inherit;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    button.btn{
+      padding:11px 22px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:#37352F;
+      border:1px solid #37352F;
+    }
+
+    .btn-primary:hover{background:#24231F;}
+
+    .btn-ghost{
+      color:#37352F;
+      background:#fff;
+      border:1px solid #D8D8D5;
+    }
+
+    .btn-ghost:hover{background:#F7F7F5;}
+
+    button:disabled{
+      cursor:default;
+      opacity:.72;
+    }
+
+    .pop{
+      position:fixed;
+      z-index:50;
+      display:none;
+      padding:10px;
+      background:#fff;
+      border:1px solid #C0C0C0;
+      border-radius:10px;
+      box-shadow:0 8px 22px rgba(0,0,0,.08);
+    }
+
+    .pop.open{display:block;}
+
+    .pop .opts{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .pop .opt{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:5px;
+      padding:6px 8px;
+      cursor:pointer;
+      background:transparent;
+      border:none;
+      border-radius:8px;
+    }
+
+    .pop .opt:hover{background:#F7F7F5;}
+
+    .pop .sw{
+      width:24px;
+      height:24px;
+      border-radius:50%;
+    }
+
+    .pop .opt span{
+      color:var(--ink);
+      font-size:12px;
+      font-weight:620;
+    }
+
+    /* iPhone / X 인앱 브라우저용 저장 화면 */
+    .ios-save-overlay{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      overflow:auto;
+      padding:20px 14px 32px;
+      background:rgba(255,255,255,.98);
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .ios-save-panel{
+      width:min(100%, 560px);
+      text-align:center;
+    }
+
+    .ios-save-panel h2{
+      margin:6px 0 8px;
+      color:var(--ink);
+      font-size:18px;
+      letter-spacing:-.03em;
+    }
+
+    .ios-save-panel p{
+      max-width:430px;
+      margin:0 auto 14px;
+      color:#62615D;
+      font-size:13px;
+      line-height:1.55;
+      word-break:keep-all;
+    }
+
+    .ios-save-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
+      margin:0 0 16px;
+    }
+
+    .ios-save-actions button{
+      min-height:42px;
+      padding:10px 15px;
+      cursor:pointer;
+      border-radius:8px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .ios-save-primary{
+      color:#fff;
+      background:#37352F;
+      border:1px solid #37352F;
+    }
+
+    .ios-save-secondary{
+      color:#37352F;
+      background:#fff;
+      border:1px solid #D8D8D5;
+    }
+
+    .ios-save-preview{
+      display:block;
+      width:100%;
+      height:auto;
+      margin:0 auto;
+      border:1px solid #E4E4E1;
+      -webkit-touch-callout:default;
+    }
+
+    @media (max-width:560px){
+      body{padding:22px 10px 32px;}
+      .card{padding:32px;}
+    }
+  </style>
 </head>
 
 <body>
@@ -358,45 +376,62 @@
     ];
 
     const cats = [
-      { key:'otp',      label:'OTP',      rgb:'255,189,189', op:.95, dot:'rgba(255,189,189,.90)' },
-      { key:'good',     label:'좋음',     rgb:'255,224,184', op:.95, dot:'rgba(255,224,184,.90)' },
-      { key:'like',     label:'호감',     rgb:'255,255,171', op:.75, dot:'rgba(255,255,171,.68)' },
-      { key:'interest', label:'가능',     rgb:'194,255,238', op:.85, dot:'rgba(194,255,238,.78)' },
-      { key:'none',     label:'관심없음', rgb:null,          op:0,   dot:'#ffffff' },
-      { key:'mine',     label:'지뢰',     rgb:'90,90,92',    op:.66, dot:'rgba(90,90,92,.66)' }
+      {key:'otp',      label:'OTP',      rgb:'255,189,189', op:.95, dot:'rgba(255,189,189,.90)'},
+      {key:'good',     label:'좋음',     rgb:'255,224,184', op:.95, dot:'rgba(255,224,184,.90)'},
+      {key:'like',     label:'호감',     rgb:'255,255,171', op:.75, dot:'rgba(255,255,171,.68)'},
+      {key:'interest', label:'가능',     rgb:'194,255,238', op:.85, dot:'rgba(194,255,238,.78)'},
+      {key:'none',     label:'관심없음', rgb:null,          op:0,   dot:'#ffffff'},
+      {key:'mine',     label:'지뢰',     rgb:'90,90,92',    op:.66, dot:'rgba(90,90,92,.66)'}
     ];
 
-    const catMap = Object.fromEntries(cats.map(c => [c.key, c]));
-    const fillOf = c => c.rgb ? 'rgba(' + c.rgb + ',' + c.op + ')' : '';
+    const catMap = Object.fromEntries(cats.map(function(cat){
+      return [cat.key, cat];
+    }));
 
-    const legend = document.getElementById('legend');
-
-    legend.innerHTML = cats.map(function(c){
-      const border = c.key === 'none' ? '1px solid #cccccc' : '1px solid rgba(0,0,0,.07)';
-
-      return '<div class="item"><span class="dot" style="background:' + c.dot + ';border:' + border + '"></span><span>' + c.label + '</span></div>';
-    }).join('');
+    const fillOf = function(cat){
+      return cat.rgb ? 'rgba(' + cat.rgb + ',' + cat.op + ')' : '';
+    };
 
     const state = {};
-    const tbl = document.getElementById('chart');
+    const table = document.getElementById('chart');
+    const legend = document.getElementById('legend');
+    const pop = document.getElementById('pop');
+    const popOpts = document.getElementById('popOpts');
+    const stage = document.getElementById('stage');
+    let activeCell = null;
+
+    function buildLegend(){
+      legend.innerHTML = cats.map(function(cat){
+        const border = cat.key === 'none'
+          ? '1px solid #cccccc'
+          : '1px solid rgba(0,0,0,.07)';
+
+        return '<div class="item">' +
+          '<span class="dot" style="background:' + cat.dot + ';border:' + border + '"></span>' +
+          '<span>' + cat.label + '</span>' +
+        '</div>';
+      }).join('');
+    }
 
     function buildTable(){
       let html = '<thead><tr><th class="corner"></th>';
 
-      members.forEach(function(m){
-        html += '<th>' + m + '</th>';
+      members.forEach(function(member){
+        html += '<th>' + member + '</th>';
       });
 
       html += '</tr></thead><tbody>';
 
-      for(let r = 0; r < members.length; r++){
-        html += '<tr><th>' + members[r] + '</th>';
+      for(let row = 0; row < members.length; row++){
+        html += '<tr><th>' + members[row] + '</th>';
 
-        for(let c = 0; c < members.length; c++){
-          if(r === c){
+        for(let col = 0; col < members.length; col++){
+          if(row === col){
             html += '<td class="self"></td>';
           }else{
-            html += '<td class="cell" data-r="' + r + '" data-c="' + c + '"><span class="chip">' + cells[r][c] + '</span></td>';
+            html += '<td class="cell" data-r="' + row + '" data-c="' + col + '">' +
+              '<span class="chip">' + cells[row][col] + '</span>' +
+            '</td>';
           }
         }
 
@@ -404,51 +439,56 @@
       }
 
       html += '</tbody>';
-      tbl.innerHTML = html;
+      table.innerHTML = html;
     }
 
-    buildTable();
+    function buildColorOptions(){
+      popOpts.innerHTML = cats.map(function(cat){
+        const color = cat.rgb
+          ? 'rgba(' + cat.rgb + ',' + Math.min(cat.op + .18, .9) + ')'
+          : '#ffffff';
 
-    const pop = document.getElementById('pop');
-    const popOpts = document.getElementById('popOpts');
-    let activeCell = null;
+        const border = cat.key === 'none'
+          ? 'border:1px dashed #cccccc;'
+          : 'border:1px solid rgba(0,0,0,.08);';
 
-    popOpts.innerHTML = cats.map(function(c){
-      const swColor = c.rgb ? 'rgba(' + c.rgb + ',' + Math.min(c.op + 0.18, 0.9) + ')' : '#ffffff';
-      const border = c.key === 'none' ? 'border:1px dashed #cccccc;' : 'border:1px solid rgba(0,0,0,.08);';
-
-      return '<button class="opt" data-key="' + c.key + '"><span class="sw" style="background:' + swColor + ';' + border + '"></span><span>' + c.label + '</span></button>';
-    }).join('');
+        return '<button type="button" class="opt" data-key="' + cat.key + '">' +
+          '<span class="sw" style="background:' + color + ';' + border + '"></span>' +
+          '<span>' + cat.label + '</span>' +
+        '</button>';
+      }).join('');
+    }
 
     function applyColor(cell, key){
-      const cat = catMap[key];
+      const category = catMap[key];
       const id = cell.dataset.r + '-' + cell.dataset.c;
 
-      if(!cat || !cat.rgb){
+      if(!category || !category.rgb){
         cell.style.background = '';
         delete state[id];
-      }else{
-        cell.style.background = fillOf(cat);
-        state[id] = key;
+        return;
       }
+
+      cell.style.background = fillOf(category);
+      state[id] = key;
     }
 
     function openPop(cell){
       activeCell = cell;
       pop.classList.add('open');
 
-      const r = cell.getBoundingClientRect();
-      const pw = pop.offsetWidth;
-      const ph = pop.offsetHeight;
-      const M = 8;
+      const rect = cell.getBoundingClientRect();
+      const popWidth = pop.offsetWidth;
+      const popHeight = pop.offsetHeight;
+      const margin = 8;
 
-      let left = r.left + r.width / 2 - pw / 2;
-      let top = r.bottom + 8;
+      let left = rect.left + rect.width / 2 - popWidth / 2;
+      let top = rect.bottom + 8;
 
-      left = Math.max(M, Math.min(left, window.innerWidth - pw - M));
+      left = Math.max(margin, Math.min(left, window.innerWidth - popWidth - margin));
 
-      if(top + ph > window.innerHeight - M){
-        top = r.top - ph - 8;
+      if(top + popHeight > window.innerHeight - margin){
+        top = rect.top - popHeight - 8;
       }
 
       pop.style.left = left + 'px';
@@ -460,138 +500,154 @@
       activeCell = null;
     }
 
-    tbl.addEventListener('click', function(e){
-      const cell = e.target.closest('td.cell');
-      if(!cell) return;
-
-      e.stopPropagation();
-
-      if(activeCell === cell){
-        closePop();
-        return;
-      }
-
-      openPop(cell);
-    });
-
-    popOpts.addEventListener('click', function(e){
-      const opt = e.target.closest('.opt');
-      if(!opt || !activeCell) return;
-
-      applyColor(activeCell, opt.dataset.key);
-      closePop();
-    });
-
-    document.addEventListener('click', function(e){
-      if(pop.classList.contains('open') && !pop.contains(e.target)){
-        closePop();
-      }
-    });
-
-    window.addEventListener('resize', closePop);
-    window.addEventListener('scroll', closePop, true);
-
-    document.getElementById('resetBtn').addEventListener('click', function(){
-      document.querySelectorAll('td.cell').forEach(function(cell){
-        cell.style.background = '';
-      });
-
-      for(const k in state){
-        delete state[k];
-      }
-
-      closePop();
-    });
-
-    const stageEl = document.getElementById('stage');
-
     function relayout(){
       const card = document.getElementById('capture');
-
       card.style.transform = 'none';
 
-      const w = card.offsetWidth;
-      const h = card.offsetHeight;
+      const width = card.offsetWidth;
+      const height = card.offsetHeight;
 
-      if(!w || !h) return;
+      if(!width || !height) return;
 
-      const padX = parseFloat(getComputedStyle(document.body).paddingLeft) || 0;
-      const avail = document.documentElement.clientWidth - padX * 2;
-      const s = avail < w ? avail / w : 1;
+      const bodyPadding = parseFloat(getComputedStyle(document.body).paddingLeft) || 0;
+      const availableWidth = document.documentElement.clientWidth - bodyPadding * 2;
+      const scale = availableWidth < width ? availableWidth / width : 1;
 
-      card.style.transform = s < 1 ? 'scale(' + s + ')' : 'none';
-      stageEl.style.width = (w * s) + 'px';
-      stageEl.style.height = (h * s) + 'px';
+      card.style.transform = scale < 1 ? 'scale(' + scale + ')' : 'none';
+      stage.style.width = (width * scale) + 'px';
+      stage.style.height = (height * scale) + 'px';
     }
 
-    if(document.fonts && document.fonts.ready){
-      document.fonts.ready.then(relayout);
-    }else{
-      relayout();
-    }
-
-    relayout();
-    window.addEventListener('resize', relayout);
-
-    
-    function isIOSWebKit(){
+    function isIOS(){
       return /iP(ad|hone|od)/.test(navigator.userAgent) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints >= 5);
     }
 
-    function makeCenteredExportCanvas(contentCanvas, cssMargin, scale){
-      const margin = Math.round(cssMargin * scale);
-      const out = document.createElement('canvas');
-
-      out.width = contentCanvas.width + margin * 2;
-      out.height = contentCanvas.height + margin * 2;
-
-      const ctx = out.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, out.width, out.height);
-      ctx.drawImage(contentCanvas, margin, margin);
-
-      return out;
-    }
-
     function canvasToBlob(canvas){
       return new Promise(function(resolve){
-        if(canvas.toBlob){
-          canvas.toBlob(function(blob){
-            resolve(blob);
-          }, 'image/png');
-        }else{
+        if(!canvas.toBlob){
           resolve(null);
+          return;
         }
+
+        canvas.toBlob(function(blob){
+          resolve(blob);
+        }, 'image/png');
       });
     }
 
-    function writeImageWindow(targetWindow, canvas){
-      const dataUrl = canvas.toDataURL('image/png');
+    function makeExportCanvas(contentCanvas, cssMargin, scale){
+      const margin = Math.round(cssMargin * scale);
+      const exportCanvas = document.createElement('canvas');
 
-      if(targetWindow && !targetWindow.closed){
-        targetWindow.document.open();
-        targetWindow.document.write('<!doctype html><html lang="ko"><head><meta charset="UTF-8"><title>TWS RPS 취향표 | @shinanddo</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;background:#fff;}body{display:flex;justify-content:center;align-items:flex-start;padding:0;}img{display:block;max-width:100%;height:auto;}</style></head><body><img src="' + dataUrl + '" alt="RPS 취향표"></body></html>');
-        targetWindow.document.close();
-        return;
-      }
+      exportCanvas.width = contentCanvas.width + margin * 2;
+      exportCanvas.height = contentCanvas.height + margin * 2;
 
-      location.href = dataUrl;
+      const context = exportCanvas.getContext('2d');
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+      context.drawImage(contentCanvas, margin, margin);
+
+      return exportCanvas;
     }
 
-    async function triggerDownloadFromCanvas(canvas, preparedWindow){
+    function openImageInCurrentTab(canvas){
+      window.location.href = canvas.toDataURL('image/png');
+    }
+
+    async function showIOSSaveScreen(canvas){
+      const filename = 'RPS_취향표.png';
+      const dataUrl = canvas.toDataURL('image/png');
+      const blob = await canvasToBlob(canvas);
+
+      const overlay = document.createElement('div');
+      overlay.className = 'ios-save-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', '이미지 저장');
+
+      const panel = document.createElement('div');
+      panel.className = 'ios-save-panel';
+
+      const title = document.createElement('h2');
+      title.textContent = '이미지가 준비됐어요';
+
+      const help = document.createElement('p');
+      help.textContent = '공유·저장을 누른 뒤 공유 메뉴에서 “이미지 저장”을 선택하세요. 메뉴가 열리지 않으면 아래 이미지를 길게 눌러 “사진에 저장”을 선택해 주세요.';
+
+      const actions = document.createElement('div');
+      actions.className = 'ios-save-actions';
+
+      const shareButton = document.createElement('button');
+      shareButton.type = 'button';
+      shareButton.className = 'ios-save-primary';
+      shareButton.textContent = '공유·저장';
+
+      const imageOnlyButton = document.createElement('button');
+      imageOnlyButton.type = 'button';
+      imageOnlyButton.className = 'ios-save-secondary';
+      imageOnlyButton.textContent = '이미지만 열기';
+
+      const closeButton = document.createElement('button');
+      closeButton.type = 'button';
+      closeButton.className = 'ios-save-secondary';
+      closeButton.textContent = '닫기';
+
+      const image = document.createElement('img');
+      image.className = 'ios-save-preview';
+      image.src = dataUrl;
+      image.alt = '완성된 TWS RPS 취향표';
+
+      actions.append(shareButton, imageOnlyButton, closeButton);
+      panel.append(title, help, actions, image);
+      overlay.append(panel);
+      document.body.append(overlay);
+
+      function closeSaveScreen(){
+        overlay.remove();
+      }
+
+      closeButton.addEventListener('click', closeSaveScreen);
+
+      overlay.addEventListener('click', function(event){
+        if(event.target === overlay) closeSaveScreen();
+      });
+
+      shareButton.addEventListener('click', async function(){
+        if(!blob || !navigator.share || !window.File){
+          help.textContent = '이 브라우저에서는 공유 저장을 지원하지 않습니다. 아래 이미지를 길게 눌러 “사진에 저장”을 선택해 주세요.';
+          return;
+        }
+
+        try{
+          const imageFile = new File([blob], filename, {type:'image/png'});
+
+          if(navigator.canShare && !navigator.canShare({files:[imageFile]})){
+            help.textContent = '이 브라우저에서는 공유 저장을 지원하지 않습니다. 아래 이미지를 길게 눌러 “사진에 저장”을 선택해 주세요.';
+            return;
+          }
+
+          await navigator.share({
+            title:'TWS RPS 취향표',
+            files:[imageFile]
+          });
+        }catch(error){
+          if(!error || error.name !== 'AbortError'){
+            help.textContent = '공유 메뉴를 열지 못했습니다. 아래 이미지를 길게 눌러 “사진에 저장”을 선택해 주세요.';
+          }
+        }
+      });
+
+      imageOnlyButton.addEventListener('click', function(){
+        window.location.href = dataUrl;
+      });
+    }
+
+    async function saveCanvas(canvas){
       const filename = 'RPS_취향표.png';
 
-      /*
-        iPhone/iPadOS Safari/Chrome:
-        새 창은 클릭 이벤트 안에서 미리 열어두고, 렌더링 완료 후 이미지를 주입합니다.
-        이렇게 해야 비동기 처리 후 window.open이 팝업 차단되는 문제를 줄일 수 있습니다.
-
-        Android/PC/Mac:
-        Blob PNG를 download 속성으로 저장합니다.
-      */
-      if(isIOSWebKit()){
-        writeImageWindow(preparedWindow, canvas);
+      if(isIOS()){
+        await showIOSSaveScreen(canvas);
         return;
       }
 
@@ -600,98 +656,144 @@
       if(blob){
         try{
           const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
+          const link = document.createElement('a');
+
+          link.href = url;
+          link.download = filename;
+
+          document.body.append(link);
+          link.click();
+          link.remove();
 
           setTimeout(function(){
             URL.revokeObjectURL(url);
           }, 1500);
 
           return;
-        }catch(e){
-          console.warn(e);
+        }catch(error){
+          console.warn(error);
         }
       }
 
-      writeImageWindow(null, canvas);
+      openImageInCurrentTab(canvas);
     }
+
+    table.addEventListener('click', function(event){
+      const cell = event.target.closest('td.cell');
+      if(!cell) return;
+
+      event.stopPropagation();
+
+      if(activeCell === cell){
+        closePop();
+      }else{
+        openPop(cell);
+      }
+    });
+
+    popOpts.addEventListener('click', function(event){
+      const option = event.target.closest('.opt');
+      if(!option || !activeCell) return;
+
+      applyColor(activeCell, option.dataset.key);
+      closePop();
+    });
+
+    document.addEventListener('click', function(event){
+      if(pop.classList.contains('open') && !pop.contains(event.target)){
+        closePop();
+      }
+    });
+
+    window.addEventListener('resize', function(){
+      closePop();
+      relayout();
+    });
+
+    window.addEventListener('scroll', closePop, true);
+
+    document.getElementById('resetBtn').addEventListener('click', function(){
+      document.querySelectorAll('td.cell').forEach(function(cell){
+        cell.style.background = '';
+      });
+
+      Object.keys(state).forEach(function(key){
+        delete state[key];
+      });
+
+      closePop();
+    });
 
     document.getElementById('saveBtn').addEventListener('click', function(){
       closePop();
 
-      const btn = this;
-      const prev = btn.textContent;
-      let preparedWindow = null;
+      const button = this;
+      const originalText = button.textContent;
 
       if(typeof html2canvas === 'undefined'){
         alert('이미지 저장 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인한 뒤 다시 시도해 주세요.');
         return;
       }
 
-      if(isIOSWebKit()){
-        preparedWindow = window.open('', '_blank');
-
-        if(preparedWindow){
-          preparedWindow.document.write('<!doctype html><html lang="ko"><head><meta charset="UTF-8"><title>이미지 생성 중…</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#37352F;background:#fff;font-size:15px;}</style></head><body>이미지 생성 중…</body></html>');
-          preparedWindow.document.close();
-        }
-      }
-
-      btn.textContent = '저장 중…';
-      btn.disabled = true;
+      button.textContent = '저장 중…';
+      button.disabled = true;
 
       const card = document.getElementById('capture');
-      const node = document.querySelector('#capture .sheet');
-      const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      const sheet = document.querySelector('#capture .sheet');
+
+      const fontsReady = document.fonts && document.fonts.ready
+        ? document.fonts.ready
+        : Promise.resolve();
+
       const scale = Math.min(4, Math.max(2, (window.devicePixelRatio || 1) * 2));
-      const exportMargin = window.matchMedia('(max-width:560px)').matches ? 32 : 38;
+      const margin = window.matchMedia('(max-width:560px)').matches ? 32 : 38;
 
       function finish(){
-        btn.textContent = prev;
-        btn.disabled = false;
+        button.textContent = originalText;
+        button.disabled = false;
         relayout();
       }
 
-      fontsReady.then(function(){
-        card.style.transform = 'none';
+      fontsReady
+        .then(function(){
+          card.style.transform = 'none';
 
-        const w = Math.ceil(node.offsetWidth);
-        const h = Math.ceil(node.offsetHeight);
-
-        return html2canvas(node, {
-          scale: scale,
-          backgroundColor:'#ffffff',
-          useCORS:true,
-          allowTaint:false,
-          logging:false,
-          width: w,
-          height: h,
-          windowWidth: w,
-          windowHeight: h,
-          scrollX: 0,
-          scrollY: 0,
-          removeContainer:true
+          return html2canvas(sheet, {
+            scale:scale,
+            backgroundColor:'#ffffff',
+            useCORS:true,
+            allowTaint:false,
+            logging:false,
+            width:Math.ceil(sheet.offsetWidth),
+            height:Math.ceil(sheet.offsetHeight),
+            windowWidth:Math.ceil(sheet.offsetWidth),
+            windowHeight:Math.ceil(sheet.offsetHeight),
+            scrollX:0,
+            scrollY:0,
+            removeContainer:true
+          });
+        })
+        .then(function(contentCanvas){
+          const exportCanvas = makeExportCanvas(contentCanvas, margin, scale);
+          return saveCanvas(exportCanvas);
+        })
+        .then(finish)
+        .catch(function(error){
+          console.error(error);
+          alert('이미지 저장에 실패했어요: ' + (error && error.message ? error.message : error));
+          finish();
         });
-      }).then(function(contentCanvas){
-        const centeredCanvas = makeCenteredExportCanvas(contentCanvas, exportMargin, scale);
-        return triggerDownloadFromCanvas(centeredCanvas, preparedWindow).then(finish);
-      }).catch(function(err){
-        console.error(err);
-
-        if(preparedWindow && !preparedWindow.closed){
-          preparedWindow.close();
-        }
-
-        alert('이미지 저장에 실패했어요: ' + (err && err.message ? err.message : err));
-        finish();
-      });
     });
 
+    buildLegend();
+    buildTable();
+    buildColorOptions();
 
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(relayout);
+    }else{
+      relayout();
+    }
   </script>
 </body>
 </html>
